@@ -139,7 +139,7 @@ public class HashTable<K,V> implements Map<K,V>, Cloneable,Serializable,Iterable
         int id = this.h(key);
         int aux = id;
         while (table[id] != null) {
-            if (table[id].getKey() != key || table[id].estado != Estado.TUMBA) {
+            if (table[id].getKey() != key) {
                 id++;
                 if (id > table.length) id = 0;
                 if (id == aux) throw new IndexOutOfBoundsException("No hay mas espacio");

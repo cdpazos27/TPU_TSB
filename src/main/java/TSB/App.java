@@ -9,9 +9,9 @@ public class App
     public static void main( String[] args )
     {
         System.out.println(  "Hello World!" );
-        HashTable<Integer,String > t = new HashTable<>(15);
+        HashTable<Integer,String > t = new HashTable<>(120);
 
-        for (int i=0; i<10;i++) {
+        for (int i=0; i<100;i++) {
             t.put((int) (Math.random()*100),"Roberto" + i);
         }
 

@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c66fbaf2-f1ce-4e4d-b20c-09c9e24c603d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TPU.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/TSB/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TSB/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/TSB/HashTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TSB/HashTable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/TSB/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/TSB/App.class" afterDir="false" />
