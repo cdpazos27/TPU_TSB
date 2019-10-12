@@ -13,6 +13,12 @@ public class HashTable<K,V> implements Map<K,V>, Cloneable,Serializable,Iterable
     private transient Set<K> keySet = null;
     private transient Set<Map.Entry<K,V>> entrySet = null;
     private transient Collection<V> values = null;
+    protected transient int modCount;
+
+    public enum Estado {
+        OCUPADO,
+        TUMBA,
+    }
 
     @Override
     public Iterator iterator() {
@@ -37,18 +43,15 @@ public class HashTable<K,V> implements Map<K,V>, Cloneable,Serializable,Iterable
         }
     }
 
-    public enum Estado {
-        OCUPADO,
-        VACIO,
-        TUMBA,
-    }
 
-    protected transient int modCount;
+
 
     public HashTable()
     {
         this(5, 0.8f);
     }
+
+    public HashTable(int n) {this(n,0.8f);}
 
     public HashTable(int initial_capacity, float load_factor)
     {
@@ -85,7 +88,7 @@ public class HashTable<K,V> implements Map<K,V>, Cloneable,Serializable,Iterable
 
     private int h(K key)
     {
-        return h(key.hashCode(), initial_capacity);
+        return h(key.hashCode(), table.length);
     }
 
 
@@ -113,12 +116,45 @@ public class HashTable<K,V> implements Map<K,V>, Cloneable,Serializable,Iterable
     @Override
     public V get(Object key) {
 
-        return null;
+        if (key == null) throw new NullPointerException("xd");
+
+        int id = this.h((K)key);
+        int aux = this.h((K)key);
+        V obj = null;
+        while (table[id].getKey() != key || table[id].estado != Estado.OCUPADO)
+        {
+            id += 1;
+                if (table.length < id )
+                    id = 0;
+            if (id == aux) return obj;
+        }
+        obj = table[id].getValue();
+        return obj;
+
     }
 
     @Override
     public V put(K key, V value) {
+        if (key == null || value == null) throw new NullPointerException("xd");
+        int id = this.h(key);
+        int aux = id;
+        while (table[id] != null) {
+            if (table[id].getKey() != key || table[id].estado != Estado.TUMBA) {
+                id++;
+                if (id > table.length) id = 0;
+                if (id == aux) throw new IndexOutOfBoundsException("No hay mas espacio");
+                continue;
+            }
+            Entry<K,V> e = new Entry<>(key, value);
+            V old = table[id].getValue();
+            table[id] = e;
+            return old;
+        }
+        Entry<K,V> e = new Entry<>(key, value);
+        table[id] = e;
+        count++;
         return null;
+
     }
 
     @Override
@@ -151,6 +187,18 @@ public class HashTable<K,V> implements Map<K,V>, Cloneable,Serializable,Iterable
         return null;
     }
 
+    public String toString() {
+        StringBuilder sb = new StringBuilder("Listado: ");
+        for (Entry e :table
+             ) {
+            if (e != null)
+                if (e.estado != Estado.TUMBA)
+                    sb.append("\n" + e.toString());
+        }
+
+        return sb.toString() + "\n Cantidad de elementos: " + count;
+    }
+
     private class Entry<K, V> implements Map.Entry<K, V>
     {
         private K key;
@@ -158,10 +206,9 @@ public class HashTable<K,V> implements Map<K,V>, Cloneable,Serializable,Iterable
         private Estado estado;
 
 
-        public Entry(K key, V value)
-        {
-            if(key == null || value == null)
-            {
+
+        public Entry(K key, V value) {
+            if (key == null || value == null) {
                 throw new IllegalArgumentException("Entry(): parámetro null...");
             }
             this.key = key;
@@ -179,7 +226,9 @@ public class HashTable<K,V> implements Map<K,V>, Cloneable,Serializable,Iterable
         @Override
         public V getValue()
         {
-            return value;
+            if (this.estado != Estado.OCUPADO) return value;
+            else
+                return null;
         }
 
         @Override
@@ -192,6 +241,7 @@ public class HashTable<K,V> implements Map<K,V>, Cloneable,Serializable,Iterable
 
             V old = this.value;
             this.value = value;
+            this.estado = Estado.OCUPADO;
             return old;
         }
 
@@ -220,9 +270,10 @@ public class HashTable<K,V> implements Map<K,V>, Cloneable,Serializable,Iterable
         @Override
         public String toString()
         {
+
             return "(" + key.toString() + ", " + value.toString() + ")";
         }
-    }
+    }}
 
     /*
      * Clase interna que representa una vista de todas los Claves mapeadas en la
@@ -236,4 +287,4 @@ public class HashTable<K,V> implements Map<K,V>, Cloneable,Serializable,Iterable
      */
 
 
-}
+
