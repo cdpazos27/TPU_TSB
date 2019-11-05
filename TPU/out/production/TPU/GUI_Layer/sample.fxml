@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<GridPane alignment="center" hgap="10" prefHeight="630.0" prefWidth="683.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI_Layer.Controller">
+   <children>
+      <Pane prefHeight="642.0" prefWidth="683.0">
+         <children>
+            <Label layoutX="206.0" layoutY="14.0" text="Resultados Paso 2019" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Label>
+            <Label layoutX="259.0" layoutY="65.0" text="Origen de datos">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Pane layoutX="63.0" layoutY="93.0" prefHeight="216.0" prefWidth="558.0">
+               <children>
+                  <Button fx:id="btnRegiones" layoutX="14.0" layoutY="63.0" mnemonicParsing="false" onAction="#btnRegionesClick" prefHeight="36.0" prefWidth="164.0" text="Cargar Regiones" />
+                  <Button fx:id="btnCounts" layoutX="14.0" layoutY="112.0" mnemonicParsing="false" onAction="#btnConteos_Click" prefHeight="36.0" prefWidth="164.0" text="Cargar Conteos" />
+                  <Button fx:id="btnPostulaciones" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnPostulaciones_click" prefHeight="36.0" prefWidth="164.0" text="Cargar Postulaciones" />
+                  <Button fx:id="btnRead" layoutX="201.0" layoutY="166.0" mnemonicParsing="false" onAction="#btnReadClick" prefHeight="36.0" prefWidth="157.0" text="Leer Archivos" />
+                  <TextField fx:id="txtFilePostulations" disable="true" editable="false" layoutX="198.0" layoutY="17.0" prefHeight="31.0" prefWidth="338.0" />
+                  <TextField fx:id="txtFileRegions" disable="true" editable="false" layoutX="198.0" layoutY="66.0" prefHeight="31.0" prefWidth="338.0" />
+                  <TextField fx:id="txtFileCount" disable="true" editable="false" layoutX="198.0" layoutY="115.0" prefHeight="31.0" prefWidth="338.0" />
+               </children>
+               <effect>
+                  <Blend />
+               </effect>
+            </Pane>
+            <ComboBox fx:id="cboCircuito" layoutX="460.0" layoutY="360.0" onAction="#cboCircuitoSelection" prefHeight="31.0" prefWidth="205.0" promptText="Seleccione el circuito" />
+            <ComboBox fx:id="cboDistrito" layoutX="245.0" layoutY="360.0" onAction="#cboDistritoSelection" prefHeight="31.0" prefWidth="194.0" promptText="Seleccione el distrito" />
+            <Label layoutX="41.0" layoutY="321.0" text="Buscar Por Regiones">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="cboRegion" layoutX="29.0" layoutY="360.0" onAction="#cboRegionSelection" prefHeight="31.0" prefWidth="194.0" promptText="Seleccione la región" />
+            <Label layoutX="41.0" layoutY="417.0" text="Buscar Por Candidato" />
+            <ComboBox fx:id="cboCandidato" layoutX="29.0" layoutY="461.0" onAction="#cboCandidatoSelection" prefHeight="31.0" prefWidth="318.0" promptText="Seleccione un Candidato a Presidente" />
+            <Button fx:id="btnContar" layoutX="230.0" layoutY="517.0" mnemonicParsing="false" onAction="#btnContarClick" prefHeight="70.0" prefWidth="194.0" text="Contar Votos" />
+         </children>
+      </Pane>
+   </children>
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+</GridPane>
