@@ -1,34 +1,34 @@
 package Entities;
 
-public class Distrito {
+public class Seccion {
     private String codigo, nombre;
-    private Secciones secciones;
+    private Circuitos circuitos;
     private TSBHashtableDA agrupaciones;
-    public Distrito(String codigo, String nombre){
+    public Seccion(String codigo, String nombre){
         this.codigo = codigo;
         this.nombre = nombre;
-        this.secciones = new Secciones();
+        this.circuitos = new Circuitos();
         this.agrupaciones = new TSBHashtableDA();
-    }
-
-    public String getCodigo() {
-        return codigo;
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public String getCodigo() {
+        return codigo;
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public Secciones getSecciones() {
-        return secciones;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public Circuitos getCircuitos() {
+        return circuitos;
     }
 
     public TSBHashtableDA getAgrupaciones() {

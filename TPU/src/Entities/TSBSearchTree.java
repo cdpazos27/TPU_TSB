@@ -1,5 +1,5 @@
 
-package Bussiness_Layer;
+package Entities;
 
 import java.io.Serializable;
 import java.util.*;
